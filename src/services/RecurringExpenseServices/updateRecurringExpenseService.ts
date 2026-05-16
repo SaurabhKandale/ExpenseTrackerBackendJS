@@ -1,9 +1,10 @@
 import { Request, Response } from "express";    
 import prisma from "../../lib/prisma";
+import { getRouteParam } from "../../utils/routeParams";
 
 const updateRecurringExpenseService=async (req:Request, res:Response)=>{
 
-    const recurringExpenseId=req.params.recurringExpenseId;
+    const recurringExpenseId = getRouteParam(req.params.recurringExpenseId);
     const {recurringExpenseTitle, recurringExpenseCategory, recurringExpenseAccountId, recurringExpenseAmount, userId}=req.body;
 
     try{

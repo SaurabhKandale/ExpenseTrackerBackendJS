@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import prisma from "../../lib/prisma";
+import { getRouteParam } from "../../utils/routeParams";
 
 const deleteRecurringExpenseService = async (req: Request, res: Response) => {
-  const recurringExpenseId = req.params.recurringExpenseId;
+  const recurringExpenseId = getRouteParam(req.params.recurringExpenseId);
 
   try {
     await prisma.recurringExpense.delete({

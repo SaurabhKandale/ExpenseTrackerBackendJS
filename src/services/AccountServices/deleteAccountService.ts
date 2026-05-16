@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import prisma from "../../lib/prisma";
+import { getRouteParam } from "../../utils/routeParams";
 
 const deleteAccountService=async (req:Request, res:Response)=>{
-    const {accountId} = req.params;
+    const accountId = getRouteParam(req.params.accountId);
     try{
         await prisma.account.update({
             where:{

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import prisma from "../../lib/prisma";
+import { getRouteParam } from "../../utils/routeParams";
 import { Transaction } from "../../types";
 import getTransactionDetailsService from "./getTransactionDetailsService";
 import getAccountDetailsService from "../AccountServices/getAccountDetailsService";
@@ -42,7 +43,7 @@ const reverseAccountBalancesAfterTransactionRemoval = async (
 };
 
 const removeTransactionService = async (req: Request, res: Response) => {
-  const transactionId = req.params.transactionId;
+  const transactionId = getRouteParam(req.params.transactionId);
   const existingTransaction =
     await getTransactionDetailsService(transactionId);
   if (!existingTransaction) {

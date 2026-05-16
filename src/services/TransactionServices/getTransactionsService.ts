@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import prisma from "../../lib/prisma";
+import { getRouteParam } from "../../utils/routeParams";
 import {
   Transaction,
   TransactionsGroupedByDate,
@@ -98,7 +99,7 @@ const getTransactionsHappenedInAMonth = async (
 
 const getTransationsService = async (req: Request, res: Response) => {
   const userId = req.user?.userId;
-  const currentDate = req.params.date;
+  const currentDate = getRouteParam(req.params.date);
   if (!userId) {
     return res.status(401).json({ message: "Unauthorized" });
   }
